@@ -1,0 +1,62 @@
+﻿<Window x:Class="Colegiul_National_Dr.Ioan_Mesota.View.GraduationWindow"
+        x:Name="GraduationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Colegiul_National_Dr.Ioan_Mesota.View"
+        xmlns:helper="clr-namespace:Colegiul_National_Dr.Ioan_Mesota.Helper"
+        helper:DialogCloser.DialogResult="{Binding DialogResult}"
+        mc:Ignorable="d"
+        Title="GraduationWindow" Height="450" Width="800" WindowState="Maximized" 
+        WindowStyle="None">
+    <Window.Background>
+        <ImageBrush ImageSource="/Resources/GraduationBackground.png"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="GraduationHeaderStyle" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="0,30,0,0"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Opacity" Value=".5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="400"/>
+        </Style>
+        <Style x:Key="NavigateBtnStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="0,0,20,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Opacity" Value=".7"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="{Binding FullTitle}" Style="{StaticResource GraduationHeaderStyle}"  />
+
+        <ListView ItemsSource="{Binding Graduation.Students}" Width="450" Height="400" Grid.Row="1" Margin="0,40,0,40" Name="lvStudents">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nume" Width="150" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Prenume" Width="150" DisplayMemberBinding="{Binding Surname}" />
+                    <GridViewColumn Header="Medie" Width="150" DisplayMemberBinding="{Binding Marks}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="{Binding HeadOfPromotionDetails}" Margin="0" Style="{StaticResource GraduationHeaderStyle}" FontSize="20"  Grid.Row="2"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30" Grid.Row="3">
+            <Button Content="Inapoi" Command="{Binding MoveBackCommand}" Style="{StaticResource NavigateBtnStyle}"/>
+            <Button Content="Inainte" Command="{Binding MoveNextCommand}" Style="{StaticResource NavigateBtnStyle}"/>
+            <Button Content="Inchide" Command="{Binding CloseCommand}"  Style="{StaticResource NavigateBtnStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>
