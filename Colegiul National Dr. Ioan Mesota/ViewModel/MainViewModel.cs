@@ -82,7 +82,7 @@ namespace Colegiul_National_Dr.Ioan_Mesota.ViewModel
                         Student student = new Student() {
                             Name=values[0],
                             Surname=values[1],
-                            Marks=(decimal.Parse(values[2]))/100
+                            Marks=(decimal.Parse(values[2]))
                         };
                         students.Add(student);
                     }
